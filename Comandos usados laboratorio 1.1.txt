@@ -1,0 +1,2 @@
+hostname
+hostnamectl set-hostname
