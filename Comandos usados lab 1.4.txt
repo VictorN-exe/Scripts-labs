@@ -1,0 +1,27 @@
+  108  date
+  109  mkdir materia
+  110  cd materia
+  111  vi estudiante.txt
+  112  ls -l estudiante.txt
+  113  chmod 700 estudiante.txt
+  114  ls -l estudiante.txt
+  115  chmod 070 estudiante.txt
+  116  ls -l estudiante.txt
+  117  cd
+  118  mkdir materia2
+  119  cp materia/estudiante.txt materia2/
+  120  cd materia
+  121  chmod 777 estudiante.txt
+  122  ls -l estudiante.txt
+  123  cd ..
+  124  cp materia/estudiante.txt materia2/
+  125  rm -r materia
+  126  cd materia2
+  127  ls
+  128  vi estudiante.txt
+  129  ls -l estudiante.txt
+  130  chmod 770 estudiante.txt
+  131  ls -l estudiante.txt
+  132  cd ..
+  133  date
+
