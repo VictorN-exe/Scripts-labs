@@ -1,0 +1,10 @@
+  190  crontab -e
+  192  ls /tmp
+  193  echo "sudo rm -rf /tmp/*" | at now + 1 minute
+  194  sudo apt install at
+  201  sudo su
+  202  touch /tmp/lab2.2test.txt
+  204  echo "sudo rm -rf /tmp/*" | at now + 1 minute
+  205  atq
+  206  ls /tmp
+

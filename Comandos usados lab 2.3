@@ -1,0 +1,14 @@
+  226  sudo fdisk -l
+  227  sudo fdisk /dev/sdb
+  228  sudo fdisk -l
+  229  sudo mkfs.ext4 /dev/sdb1
+  234  mkdir /home/victor/desktop/disco20gb
+  235  sudo mount /dev/sdb1 /home/victor/desktop/disco20gb
+  236  cd /home/victor/desktop/disco20gb
+  238  sudo touch AdrianAlcantara.txt
+  240  cd
+  241  sudo umount /dev/sdb1
+  242  sudo mount /dev/sdb1 /mnt
+  243  ls /mnt
+  244  date
+
