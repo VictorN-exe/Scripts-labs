@@ -1,0 +1,16 @@
+  311  ip a
+  313  sudo apt update
+  314  sudo apt install openssh-server
+  315  sudo systemctl enable ssh
+  316  sudo systemctl start ssh
+  317  sudo systemctl status  ssh
+  322  mkdir -p ./.ssh
+  323  nano ./.ssh/authorized_keys
+  324  chmod 700 ./.ssh
+  325  chmod 600 ./.ssh/authorized_keys
+
+ping 192.168.1.72
+ssh victor@192.168.1.72
+ssh-keygen
+
+

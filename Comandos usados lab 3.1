@@ -1,0 +1,9 @@
+  270  sudo nano /etc/default/grub
+  271  sudo update-grub
+  272  sudo reboot
+       init=bin/bash
+       mount -o remount rw /
+       passwd root 
+       reboot -f
+  273  su root
+
