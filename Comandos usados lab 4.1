@@ -1,0 +1,22 @@
+  352  date
+  353  sudo apt update
+  354  sudo apt install apache2 -y
+  355  sudo nano /var/www/index.html
+  356  sudo nano /var/www/html/index.html
+  357  sudo sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/holamundo.conf
+  358  sudo nano /etc/apache2/sites-available/holamundo.conf
+  359  sudo a2ensite holamundo.conf
+  360  sudo systemctl reload apache2
+  361  sudo nano /etc/hosts
+  362  sudo mkdir /var/www/victor
+  363  sudo nano /var/www/victor/index.html
+  364  sudo sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/victor8080.conf
+  365  sudo nano /etc/apache2/sites-available/victor8080.conf
+  366  sudo a2ensite victor8080.conf
+  367  sudo systemctl reload apache2
+  368  sudo nano /etc/apache2/ports.conf
+  369  sudo systemctl restart apache2
+  371  sudo nano /etc/hosts
+  372  sudo systemctl reload apache2
+  374  date
+

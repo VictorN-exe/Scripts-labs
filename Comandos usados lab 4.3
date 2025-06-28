@@ -1,0 +1,13 @@
+  539  date
+  540  sudo apt install cups -y
+  541  sudo systemctl enable cups
+  542  sudo systemctl start cups
+  543  sudo systemctl status cups
+  547  sudo usermod -aG victor $USER
+  548  sudo nano /etc/cups/cupsd.conf
+  549  sudo systemctl restart cups
+  553  sudo apt install printer-driver-cups-pdf -y
+  554  sudo systemctl restart cups
+  555  date
+
+

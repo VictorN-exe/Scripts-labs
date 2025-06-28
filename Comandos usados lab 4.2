@@ -1,0 +1,12 @@
+  521  date
+  522  sudo apt install postfix mailutils libsasl2-modules -y
+  523  sudo nano /etc/postfix/sasl_passwd
+  524  sudo chmod 600 /etc/postfix/sasl_passwd
+  526  sudo postmap /etc/postfix/sasl_passwd
+  527  sudo nano /etc/postfix/main.cf
+  528  sudo systemctl restart postfix
+  529  sudo systemctl status postfix
+  530  echo "Victor Nze - 20242226" | mail -s "MambruSeFueALaGuerra" os3conadrian@gmail.com
+  531  tail -f /var/log/mail.log
+  532  date
+
