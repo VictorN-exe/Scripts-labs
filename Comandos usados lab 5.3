@@ -1,0 +1,15 @@
+  774  date
+  775  sudo apt install apache2 -y
+  776  echo "<h1>Servidor 1 (Principal)</h1>" | sudo tee /var/www/html/index.html
+  777  sudo apt install keepalived -y
+  778  sudo nano /etc/keepalived/keepalived.conf
+  779  sudo systemctl restart keepalived
+  780  sudo systemctl start keepalived
+  781  sudo systemctl status keepalived
+  782  sudo systemctl enable keepalived
+  783  sudo systemctl start keepalived
+  784  sudo nano /etc/keepalived/keepalived.conf
+  785  sudo systemctl restart keepalived
+  786  sudo systemctl status keepalived
+  787  sudo shutdown now
+

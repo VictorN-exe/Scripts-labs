@@ -1,0 +1,14 @@
+  744  date
+  745  sudo apt update
+  746  sudo apt install heartbeat -y
+  748  sudo nano /etc/ha.d/ha.cf
+  749  sudo nano /etc/ha.d/haresources
+  750  sudo nano /etc/ha.d/authkeys
+  751  sudo chmod 600 /etc/ha.d/authkeys
+  752  sudo systemctl start heartbeat
+  753  sudo systemctl enable heartbeat
+  754  sudo systemctl status heartbeat
+  755  ip a
+  756  sudo shutdown now
+
+

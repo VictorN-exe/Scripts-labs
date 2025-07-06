@@ -1,0 +1,22 @@
+  657  date
+  658  mkdir /home/victor/carpeta_sync
+  659  touch /home/victor/carpeta_sync/archivo{001..100}.txt
+  660  rsync -avz /home/victor/carpeta_sync victor@192.168.19.10:/home/victor/carpeta_sync
+  661  sudo rm -r carpeta_sync/
+  662  ls
+  663  touch /home/victor/carpeta_sync/archivo{001..100}.txt
+  664  mkdir /home/victor/carpeta_sync
+  665  touch /home/victor/carpeta_sync/archivo{001..100}.txt
+  666  cd
+  667  cd carpeta_sync
+  668  ls
+  669  cd
+  670  rsync -avz /home/victor/carpeta_sync/ victor@192.168.19.10:/home/victor/carpeta_sync/
+  671  sudo nano /home/victor/sync.sh
+  672  chmod +x /home/victor/sync.sh
+  673  sudo chmod +x /home/victor/sync.sh
+  674  crontab -e
+  675  sudo nano /home/victor/carpeta_sync/ElElegido.txt
+  676  ls carpeta_sync
+  677  date
+
