@@ -1,0 +1,12 @@
+ 1040  date
+ 1041  sudo apt update
+ 1042  sudo apt install -y libpam-google-authenticator
+ 1043  su - victor
+ 1044  google-authenticator
+ 1045  sudo nano /etc/pam.d/sshd
+ 1047  sudo nano /etc/ssh/sshd_config
+ 1048  sudo systemctl restart ssh
+ 1050  sudo systemctl status ssh 
+ 1051  date
+ 
+

@@ -1,0 +1,36 @@
+813  date
+  814  sudo apt install apache2 vsftpd -y
+  815  sudo systemctl status apache2
+  816  sudo systemctl status vsftpd
+  817  sudo systemctl status ssh
+  818  curl localhost
+  819  ftp localhost
+  820  ssh localhost
+  821  sudo iptables -A INPUT -p tcp --dport 80 -j DROP
+  822  sudo iptables -A INPUT -p tcp --dport 21 -j DROP
+  823  sudo iptables -A INPUT -p tcp --dport 22 -j DROP
+  824  curl localhost
+  825  ftp localhost
+  826  ssh localhost
+  827  sudo iptables -D INPUT -p tcp --dport 80 -j DROP
+  828  sudo iptables -D INPUT -p tcp --dport 21 -j DROP
+  829  sudo iptables -D INPUT -p tcp --dport 22 -j DROP
+  830  ftp localhost
+  831  ssh localhost
+  832  sudo apt install ufw -y
+  833  sudo ufw enable
+  834  sudo ufw deny 80
+  835  sudo ufw deny 21
+  836  sudo ufw deny 22
+  839  sudo ufw status verbose
+  850  sudo netstat -tuln | grep -E '80|21|22'
+  851  sudo ufw allow 80
+  852  sudo ufw allow 21
+  853  sudo ufw allow 22
+  855  sudo ufw status numbered
+  856  sudo iptables -L
+  857  sudo iptables -F
+  858  sudo ufw reset
+  859  sudo ufw status numbered
+  861  date
+

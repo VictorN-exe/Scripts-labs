@@ -1,0 +1,15 @@
+  790  date
+  791  sudo apt install gnupg2 -y
+  792  mkdir cifrado_test
+  793  cd cifrado_test
+  794  echo "Este es un archivo que contiene informacion secreta" > secreto.txt
+  795  cd
+  796  gpg2 --full-generate-key
+  797  gpg2 --list-keys
+  800  gpg2 -e -r victor secreto.txt
+  801  ls
+  802  cat secreto.txt.gpg
+  803  gpg2 -d secreto.txt.gpg > descifrado.txt
+  804  cat descifrado.txt
+  805  date
+
