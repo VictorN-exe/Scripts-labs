@@ -1,0 +1,20 @@
+996	date
+997	sudo apt update && sudo apt install nfs-kernel-server -y
+998	sudo mkdir -p /srv/nfs/OS3
+999	for i in {1..100}; do echo "Archivo $i" > /srv/nfs/OS3/Adrian$i.txt; done
+1000	sudo chown -R nobody:nogroup /srv/nfs/OS3
+1001	sudo chmod -R 755 /srv/nfs/OS3
+1002	sudo nano /etc/exports (/srv/nfs/OS3  *(rw,sync,no_subtree_check)
+1003	sudo exportfs -a
+1004	sudo systemctl restart nfs-kernel-server
+1005	echo "!!!" /srv/nfs/OS3/SOYELULTIMO.txt
+1005	echo "hola" /srv/nfs/OS3/SOYELULTIMO.txt
+
+
+616	sudo apt update && sudo apt install nfs-common -y
+617	sudo mkdir -p /mnt/nfs/OS3
+618	sudo mount <IP_DEL_SERVIDOR>:/srv/nfs/OS3 /mnt/nfs/OS3
+619	ls /mnt/nfs/OS3
+620	sudo nano /etc/fstab (192.168.19.10:/srv/nfs/OS3  /mnt/nfs/OS3  nfs  defaults  0  0)
+621	sudo reboot
+622	ls /mnt/nfs/OS3
