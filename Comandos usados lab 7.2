@@ -1,0 +1,18 @@
+ 1025  date
+ 1026  sudo apt install && sudo apt install samba
+ 1027  sudo systemctl enable smbd
+ 1028  sudo systemctl start smbd
+ 1029  sudo mkdir -p /srv/samba/COMPARTIDA
+ 1030  sudo groupadd sambagroup
+ 1031  sudo useradd -M -d /srv/samba/COMPARTIDA -s /usr/sbin/nologin adrian -G sambagroup
+ 1032  sudo chown -R adrian:sambagroup /srv/samba/COMPARTIDA
+ 1034  sudo chmod -R 770 /srv/samba/COMPARTIDA
+ 1035  sudo smbpasswd -a adrian
+ 1036  for i in {1..100}; do echo "Archivo Samba $i" > /srv/samba/COMPARTIDA/adrian$i.txt; done
+ 1037  sudo nano /etc/samba/smb.conf
+ 1038  sudo systemctl restart smbd
+ 1039  sudo systemctl status smbd
+ 1054  sudo cat /srv/samba/COMPARTIDA/adrian99.txt
+ 1055  sudo cat /srv/samba/COMPARTIDA/adrian68.txt
+ 1056  date
+
