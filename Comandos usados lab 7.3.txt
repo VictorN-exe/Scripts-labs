@@ -1,0 +1,16 @@
+1082	date
+1083	sudo apt update
+1084	sudo apt install samba krb5-user winbind dnsutils -y
+1085	sudo nano /etc/hostname set-hostname 
+1086	sudo systemctl stop smbd nmbd winbind
+1087	sudo systemctl disable smbd nmbd winbind
+1088	sudo samba-tool domain provision --use-rfc2307 --interactive
+1090	sudo nano /etc/krb5.conf
+1091	host -t SRV _ldap._tcp.so3.inet
+1092	host -t SRV _kerberos._udp.so3.inet
+1093	sudo systemctl unmask samba-ad-dc
+1094	sudo systemctl enable samba-ad-dc
+1095	sudo systemctl start samba-ad-dc
+1096	sudo samba-tool user add lanegracubana
+1097	sudo systemctl status samba-ad-dc
+1098	date
