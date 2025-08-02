@@ -1,0 +1,10 @@
+1090  date
+1091  sudo apt update
+1092  sudo apt install docker-compose
+1095  mkdir wordpress
+1096  cd wordpress
+1097  nano docker-compose.yml
+1098  docker compose version
+1100  docker compose ps
+1106  docker compose up -d
+1107  date
