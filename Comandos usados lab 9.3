@@ -1,0 +1,83 @@
+sudo apt install ansible
+
+ansible --version
+
+sudo mkdir -p
+cd /etc/ansible
+
+sudo nano ansible.cfg
+[defaults]
+inventory = /etc/ansible/hosts
+private_key_file = /home/maxwell20241208/.ssh/id_rsa
+host_key_checking = False
+ask_become_pass = True
+
+[ssh_connection]
+ssh_args = -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s
+
+sudo nano hosts
+[win]
+10.0.2.15
+
+[win:vars]
+ansible_user=ansible
+ansible_password=pass123
+ansible_port=5985
+ansible_connection=winrm
+ansible_winrm_transport=basic
+ansible_winrm_server_cert_validation=ignore
+
+[linux]
+159.223.168.145
+
+[linux:vars]
+ansible_user=ansible
+ansible_ssh_private_key_file= ~/.ssh/id_rsa
+ansible_become_password=pass123
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+ssh-keygen -t rsa -b 4098
+
+cat ~/.ssh/id_rsa.pub
+#copiar llave#
+
+## Linux client
+sudo useradd -m ansible
+sudo usermod -aG sudo ansible
+sudo chsh -s /bin/bash ansible
+
+sudo mkdir -p /home/ansible/.ssh
+sudo touch /home/ansible/.ssh/authorized_keys
+sudo chmod 600 /home/ansible/.ssh/authorized_keys
+sudo chown ansible:ansible /home/ansible/.ssh/authorized_keys
+
+sudo nano /home/ansible/.ssh/authorized_keys
+#pegar llave generada#
+
+## LINUX SERVER
+
+ssh ansible@159.223.168.145
+
+#prueba de verificación de ansible#
+ansible Linux -m ping -u ansible
+
+Power Shell:
+Set-ExecutionPolicy RemoteSigned -Force
+Enable-PSRemoting -Force
+Set-Item MSMan:\localhost\Service\AllowUnencrypted -Value $true
+Set-Item MSMan:\localhost\Service\Auth\Basic -Value $true
+Set-Item MSMan:\localhost\Client\TrustedHosts -Value '*' -Force
+netsh advfirewall firewall add rule name="WinRM HTTP" dir=in action=allow protocol=TCP localport=5985
+netsh advfirewall firewall set rule group="Administración remota de Windows" new enable=yes
+Restart-Service WinRM
+$Password = ConvertTo-SecureString "pass123" -AsPlainText -Force
+New-LocalUser -Name "ansible" -Password $Password -FullName "Ansible User" -Description "Usuario Ansible"
+Add-LocalGroupMember -Group "Administradores" -Member "ansible"
+winrm enumerate winrm/config/listener
+Test-NetConnection -ComputerName localhost -Port 5985
+
+## LINUX Server
+ansible win -m win_ping
+
