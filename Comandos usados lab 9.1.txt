@@ -1,0 +1,7 @@
+ 1072  date
+ 1073  sudo apt update
+ 1076  sudo curl -o webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh
+ 1077  sh webmin-setup-repo.sh
+ 1078  apt-get install webmin --install-recommends
+
+

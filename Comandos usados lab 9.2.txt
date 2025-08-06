@@ -1,0 +1,24 @@
+ 1086  date
+ 1087  sudo apt update && sudo apt install -y gnupg software-properties-common curl
+ 1088  sudo curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+ 1089  sudo echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+ 1092  sudo wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+ 1093  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+ 1094  sudo apt update && sudo apt install terraform
+ 1095  terraform -version
+ 1096  mkdir terraform-do 
+ 1097  cd terraform-do/
+ 1098  sudo nano main.tf
+ 1100  sudo nano variables.tf
+ 1104  cat /home/victor/.ssh/id_ed25519.pub
+ 1107  sudo nano variables.tf
+ 1109  sudo nano terraform.tfvars
+ 1155  sudo terraform init
+ 1156  sudo terraform plan
+ 1157  sudo terraform apply
+ 1159  ssh root@159.223.168.145
+ 1160  date
+
+
+
+
