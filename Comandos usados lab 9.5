@@ -1,0 +1,43 @@
+date
+cd /etc/ansible
+sudo nano install_notepad.yml
+- name: Instalar Notepad++ en Windows
+  hosts: ansible2
+  tasks:
+    - name: Descargar instalador de Notepad++
+      win_get_url:
+        url: https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.6.8/npp.8.6.8.Installer.x64.exe
+        dest: C:\Users\ansible\Downloads\npp_installer.exe
+
+    - name: Instalar Notepad++
+      win_package:
+        path: C:\Users\ansible\Downloads\npp_installer.exe
+        product_id: Notepad++
+        arguments: /S
+        state: present
+sudo nano install_nginx.yml
+- name: Instalar NGINX en Linux
+  hosts: ansible1
+  become: yes
+  tasks:
+    - name: Actualizar paquetes
+      apt:
+        update_cache: yes
+
+    - name: Instalar nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Iniciar y habilitar nginx
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+# Ejecutar playbook en máquina Windows
+ansible-playbook -i ../hosts install_notepad.yml
+
+# Ejecutar playbook en máquina Linux
+ansible-playbook -i ../hosts install_nginx.yml
+date
+
