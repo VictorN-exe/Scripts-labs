@@ -1,0 +1,4 @@
+date
+ansible ansible2 -i hosts -m win_shell -a "Move-Item -Path 'C:\\Users\\ansible\\Desktop\\archivo.txt' -Destination 'C:\\Users\\ansible\\Documents\\archivo.txt'"
+ansible ansible1 -i hosts -m reboot --become
+date
