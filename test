@@ -1,0 +1,13 @@
+Set-ExecutionPolicy RemoteSigned -Force
+Enable-PSRemoting -Force
+Set-Item MSMan:\localhost\Service\AllowUnencrypted -Value $true
+Set-Item MSMan:\localhost\Service\Auth\Basic -Value $true
+Set-Item MSMan:\localhost\Client\TrustedHosts -Value '*' -Force
+netsh advfirewall firewall add rule name="WinRM HTTP" dir=in action=allow protocol=TCP localport=5985
+netsh advfirewall firewall set rule group="Administración remota de Windows" new enable=yes
+Restart-Service WinRM
+$Password = ConvertTo-SecureString "pass123" -AsPlainText -Force
+New-LocalUser -Name "ansible" -Password $Password -FullName "Ansible User" -Description "Usuario Ansible"
+Add-LocalGroupMember -Group "Administradores" -Member "ansible"
+winrm enumerate winrm/config/listener
+Test-NetConnection -ComputerName localhost -Port 5985
