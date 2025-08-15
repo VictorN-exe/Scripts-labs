@@ -9,6 +9,67 @@
  1096  mkdir terraform-do 
  1097  cd terraform-do/
  1098  sudo nano main.tf
+ #!/bin/bash
+
+<<EOF
+variable "do_token" {}
+variable "ssh_fingerprint" {}
+
+provider "digitalocean" {
+  token = var.do_token
+}
+
+resource "digitalocean_project" "OS3" {
+  name        = "OS3"
+  description = "OS3"
+}
+
+resource "digitalocean_droplet" "ubuntu_server" {
+  image     = "ubuntu-22-04-x64"
+  name      = "OS3"
+  region    = "nyc1"
+  size      = "s-1vcpu-1gb"
+  ssh_keys  = [var.ssh_fingerprint]
+}
+
+resource "digitalocean_firewall" "OS3_fw" {
+  name = "OS3-firewall"
+
+  droplet_ids = [digitalocean_droplet.ubuntu_server.id]
+
+  inbound_rule {
+    protocol         = "tcp"
+    port_range       = "22"
+    source_addresses = ["0.0.0.0/0"]
+  }
+  
+  inbound_rule {
+    protocol         = "tcp"
+    port_range       = "80"
+    source_addresses = ["0.0.0.0/0"]
+  }
+  
+  inbound_rule {
+    protocol         = "tcp"
+    port_range       = "443"
+    source_addresses = ["0.0.0.0/0"]
+  }
+  
+  inbound_rule {
+    protocol         = "tcp"
+    port_range       = "445"
+    source_addresses = ["0.0.0.0/0"]
+  }
+}
+
+resource "digitalocean_project_resources" "project_attach" {
+  project   = digitalocean_project.OS3.id
+  resources = [digitalocean_droplet.ubuntu_server.urn]
+}
+EOF
+
+terraform init
+terraform apply -var="do_token=$1" -var="ssh_fingerprint=$2"
  1100  sudo nano variables.tf
  1104  cat /home/victor/.ssh/id_ed25519.pub
  1107  sudo nano variables.tf
@@ -18,6 +79,7 @@
  1157  sudo terraform apply
  1159  ssh root@159.223.168.145
  1160  date
+
 
 
 
